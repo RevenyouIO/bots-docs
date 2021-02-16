@@ -230,6 +230,24 @@
 </li>
 
 
+
+<li>
+  
+    
+
+
+
+<a  title="FAQ" href="https://revenyouio.github.io/bots-docs/faq/">
+	
+	FAQ
+</a>
+
+
+
+  
+</li>
+
+
         </ul>
         
 
@@ -306,7 +324,7 @@ When entering an order, the bot must provide a unique id. In addition, once the 
 <tr>
 <td style="text-align:left">baseAsset</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">Base asset of the order</td>
+<td style="text-align:left">Base asset of the order. Side of the order pertains to this asset</td>
 <td style="text-align:center">Yes</td>
 </tr>
 <tr>
@@ -372,7 +390,23 @@ When entering an order, the bot must provide a unique id. In addition, once the 
 </tbody>
 </table>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X POST <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/placeOrder&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span> -H  <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#34;{  \&#34;signalProvider\&#34;: \&#34;MyBot\&#34;,  \&#34;signalProviderKey\&#34;: \&#34;MyKey\&#34;,  \&#34;extId\&#34;: \&#34;00001\&#34;,  \&#34;exchange\&#34;: \&#34;binance\&#34;,  \&#34;baseAsset\&#34;: \&#34;BTC\&#34;,  \&#34;quoteAsset\&#34;: \&#34;USDT\&#34;,  \&#34;type\&#34;: \&#34;limit\&#34;,  \&#34;side\&#34;: \&#34;buy\&#34;,  \&#34;limitPrice\&#34;: \&#34;30000\&#34;,  \&#34;qtyPct\&#34;: \&#34;60\&#34;,  \&#34;ttlType\&#34;: \&#34;gtc\&#34;,  \&#34;responseType\&#34;: \&#34;FULL\&#34;}&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X POST <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/placeOrder&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span> -H  <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#34;{  \&#34;signalProvider\&#34;: \&#34;MyBot\&#34;,  \&#34;signalProviderKey\&#34;: \&#34;MyKey\&#34;,  \&#34;extId\&#34;: \&#34;00001\&#34;,  \&#34;exchange\&#34;: \&#34;binance\&#34;,  \&#34;baseAsset\&#34;: \&#34;BTC\&#34;,  \&#34;quoteAsset\&#34;: \&#34;USDT\&#34;,  \&#34;type\&#34;: \&#34;limit\&#34;,  \&#34;side\&#34;: \&#34;buy\&#34;,  \&#34;limitPrice\&#34;: \&#34;45000\&#34;,  \&#34;qtyPct\&#34;: \&#34;60\&#34;,  \&#34;ttlType\&#34;: \&#34;gtc\&#34;,  \&#34;responseType\&#34;: \&#34;FULL\&#34;}&#34;</span>
+</code></pre></div><p>Please note the meaning of <strong>baseAsset</strong> and <strong>quoteAsset</strong>. The baseAsset is the product that is bought or sold (depending on the <strong>side</strong> of the order), the quoteAsset is the unit of the price. So, the below order body describes an order to buy BTC with a limit price of 47000 USDT. 40% of available USDT will be used to buy BTC. The limit order will be active for 30 seconds. If not filled in this time, it will be cancelled. Selling BTC for USDT only requires the side of the order to be changed; no switching of base- and quoteAsset is required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">{</span>
+<span style="color:#e6db74">&#34;signalProvider&#34;</span>: <span style="color:#e6db74">&#34;MyBot&#34;</span>, 
+<span style="color:#e6db74">&#34;signalProviderKey&#34;</span>: <span style="color:#e6db74">&#34;MyKey&#34;</span>, 
+<span style="color:#e6db74">&#34;extId&#34;</span>: <span style="color:#e6db74">&#34;MyExtId&#34;</span>, 
+<span style="color:#e6db74">&#34;exchange&#34;</span>: <span style="color:#e6db74">&#34;binance&#34;</span>, 
+<span style="color:#e6db74">&#34;baseAsset&#34;</span>: <span style="color:#e6db74">&#34;BTC&#34;</span>, 
+<span style="color:#e6db74">&#34;quoteAsset&#34;</span>: <span style="color:#e6db74">&#34;USDT&#34;</span>, 
+<span style="color:#e6db74">&#34;limitPrice&#34;</span>: <span style="color:#e6db74">&#34;47000&#34;</span>, 
+<span style="color:#e6db74">&#34;qtyPct&#34;</span>: <span style="color:#e6db74">&#34;40&#34;</span>, 
+<span style="color:#e6db74">&#34;side&#34;</span>: <span style="color:#e6db74">&#34;buy&#34;</span>, 
+<span style="color:#e6db74">&#34;ttlType&#34;</span>: <span style="color:#e6db74">&#34;secs&#34;</span>, 
+<span style="color:#e6db74">&#34;ttlSecs&#34;</span>: <span style="color:#e6db74">&#34;30&#34;</span>, 
+<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;limit&#34;</span>, 
+<span style="color:#e6db74">&#34;responseType&#34;</span>: <span style="color:#e6db74">&#34;ACK&#34;</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><h3 id="response">Response</h3>
 <table>
 <thead>
