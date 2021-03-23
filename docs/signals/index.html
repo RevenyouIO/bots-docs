@@ -237,6 +237,24 @@
 
 
 
+<a  title="Positions" href="https://revenyouio.github.io/bots-docs/positions/">
+	
+	Positions
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="FAQ" href="https://revenyouio.github.io/bots-docs/faq/">
 	
 	FAQ
@@ -392,7 +410,7 @@ the appropriate time.</p>
 <tr>
 <td style="text-align:left">slLimitPricePct</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">Stoploss order limit as pct away from &hellip;</td>
+<td style="text-align:left">Stoploss order limit as pct of openLimitPrice (e.g. 98.5)</td>
 <td style="text-align:center">No</td>
 </tr>
 <tr>
@@ -404,7 +422,7 @@ the appropriate time.</p>
 <tr>
 <td style="text-align:left">slStopPricePct</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">Stop loss trigger level as pct away from openLimitPrice</td>
+<td style="text-align:left">Stop loss trigger level as pct of openLimitPrice (e.g. 99)</td>
 <td style="text-align:center">No</td>
 </tr>
 <tr>
@@ -435,7 +453,7 @@ the appropriate time.</p>
 <tr>
 <td style="text-align:left">limitPricePct</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">Percentage away from average execution price of opening order</td>
+<td style="text-align:left">Percentage of average execution price of opening order (e.g. 105)</td>
 <td style="text-align:center">Yes</td>
 </tr>
 <tr>
@@ -447,7 +465,7 @@ the appropriate time.</p>
 </tbody>
 </table>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X POST <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/placeSignal&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span> -H  <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#34;{  \&#34;signalProvider\&#34;: \&#34;MyBot\&#34;,  \&#34;signalProviderKey\&#34;: \&#34;MyKey\&#34;,  \&#34;extId\&#34;: \&#34;0001\&#34;,  \&#34;exchange\&#34;: \&#34;binance\&#34;,  \&#34;baseAsset\&#34;: \&#34;BTC\&#34;,  \&#34;quoteAsset\&#34;: \&#34;USDT\&#34;,  \&#34;direction\&#34;: \&#34;buy2sell\&#34;,  \&#34;openLimitPrice\&#34;: \&#34;40000\&#34;,  \&#34;openQtyPct\&#34;: \&#34;60\&#34;,  \&#34;openTtlType\&#34;: \&#34;gtc\&#34;,  \&#34;closeTargets\&#34;: [    {      \&#34;qtyPct\&#34;: \&#34;100\&#34;,      \&#34;limitPricePct\&#34;: \&#34;5\&#34;    }  ]}&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X POST <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/placeSignal&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span> -H  <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#34;{  \&#34;signalProvider\&#34;: \&#34;MyBot\&#34;,  \&#34;signalProviderKey\&#34;: \&#34;MyKey\&#34;,  \&#34;extId\&#34;: \&#34;0001\&#34;,  \&#34;exchange\&#34;: \&#34;binance\&#34;,  \&#34;baseAsset\&#34;: \&#34;BTC\&#34;,  \&#34;quoteAsset\&#34;: \&#34;USDT\&#34;,  \&#34;direction\&#34;: \&#34;buy2sell\&#34;,  \&#34;openLimitPrice\&#34;: \&#34;40000\&#34;,  \&#34;openQtyPct\&#34;: \&#34;60\&#34;,  \&#34;openTtlType\&#34;: \&#34;gtc\&#34;,  \&#34;closeTargets\&#34;: [    {      \&#34;qtyPct\&#34;: \&#34;100\&#34;,      \&#34;limitPricePct\&#34;: \&#34;105\&#34;    }  ]}&#34;</span>
 </code></pre></div><h3 id="response">Response</h3>
 <table>
 <thead>
@@ -841,6 +859,30 @@ the appropriate time.</p>
 <td style="text-align:left">slOrder</td>
 <td style="text-align:center">Order object</td>
 <td style="text-align:left">The stop loss order associated with this signal</td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td style="text-align:left">baseFree</td>
+<td style="text-align:center">Asset Info object</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td style="text-align:left">quoteFree</td>
+<td style="text-align:center">Asset Info object</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td style="text-align:left">baseLocked</td>
+<td style="text-align:center">Asset Info object</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td style="text-align:left">quoteLocked</td>
+<td style="text-align:center">Asset Info object</td>
+<td style="text-align:left"></td>
 <td style="text-align:center">No</td>
 </tr>
 </tbody>
