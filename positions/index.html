@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>BEM API Reference</title>
+    <title>Positions - Bots By RevenYOU</title>
     <meta name="generator" content="Hugo 0.76.5" />
 
     
     <meta name="description" content="BEM api v2 Documentation">
     
-    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/">
+    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/positions/">
     
     <meta name="author" content="Bots by RevenYOU">
     
 
-    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/">
+    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/positions/">
     <meta property="og:title" content="Bots By RevenYOU">
     <meta property="og:image" content="https://revenyouio.github.io/bots-docs/images/Bots_icon.png">
     <meta name="apple-mobile-web-app-title" content="Bots By RevenYOU">
@@ -69,9 +69,6 @@
     <script src="https://revenyouio.github.io/bots-docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://revenyouio.github.io/bots-docs/index.xml" rel="alternate" type="application/rss+xml" title="Bots By RevenYOU" />
-    <link href="https://revenyouio.github.io/bots-docs/index.xml" rel="feed" type="application/rss+xml" title="Bots By RevenYOU" />
-    
 
   </head>
   <body class="palette-primary-light-blue palette-accent-teal">
@@ -100,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        BEM API Reference
+        Positions
       </div>
     </div>
 
@@ -237,11 +234,14 @@
 
 
 
-<a  title="Positions" href="https://revenyouio.github.io/bots-docs/positions/">
+<a class="current" title="Positions" href="https://revenyouio.github.io/bots-docs/positions/">
 	
 	Positions
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -296,21 +296,153 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>BEM API Reference </h1>
+			<h1>Positions </h1>
 
-				<h2 id="introduction">Introduction</h2>
-<p>Welcome to the BEM api documentation page. Here you can find all information needed to access the api and start building bots for the Bots platform.</p>
-<p>In order to gain access to the api, you need to create a bot name and obtain a key for it. Both can be done in the app. Please see the bot creator documentation how to achieve this. You can find it <a href="https://drive.google.com/drive/folders/1faI5HGDQoSd6uhmkHmLVRovAHF1V-POV?usp=sharing">here</a></p>
-<p>The BEM api is REST api that gives your bots access to the Bots platform. It enables you to create Orders and Signals; both are explained here.</p>
-<h2 id="url">URL</h2>
-<p>When developing/testing your bots, you should use: <a href="https://signal.revenyou.io/paper/api/signal/v2">https://signal.revenyou.io/paper/api/signal/v2</a><br>
-Once your bot comes out of quarantine use:         <a href="https://signal.revenyou.io/production/api/signal/v2">https://signal.revenyou.io/production/api/signal/v2</a></p>
-<h2 id="openapi-description">OpenAPI description</h2>
-<p>The OpenAPI file can be downloaded here: <a href="https://drive.google.com/drive/folders/1KO1uBte5b_2aKuWfF0bzgPiCc1jGQoIo">BEM.yaml</a>.<br>
-Use this to explore the BEM API by uploading it in the <a href="https://editor.swagger.io/">Swagger editor</a></p>
+			<p>To get an overview of the different asset positions of a bot, use the <strong>getBotAssetsPct</strong> endpoint.</p>
+<h2 id="get-getbotassetspct">[GET] getBotAssetsPct</h2>
+<h3 id="description">Description</h3>
+<p>Get an overview of the (relative) asset positions of a bot.</p>
+<h3 id="parameters">Parameters</h3>
+<p>(Body)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">signalProvider</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">Name of the Bot</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">signalProviderKey</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">Secret key</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">exchange</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">baseAsset</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;https://signal.revenyou.io/paper/api/signal/v2/getBotAssetsPct?signalProvider=MyBot&amp;signalProviderKey=MyKey&amp;exchange=binance&amp;baseAsset=BTC&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#39;accept: application/xml&#39;</span>
+</code></pre></div><h3 id="response">Response</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">succes</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">&lsquo;true&rsquo; or &lsquo;false&rsquo;</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">signalProvider</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">exchange</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">baseAsset</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">baseTotal</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">amounts</td>
+<td style="text-align:center">[Asset Info]</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="asset-info">Asset Info</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">exchange</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">Exchange of this asset</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">asset</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">signalId</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">orderId</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">amount</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">amountBase</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
 
-			
 
 			<aside class="copyright" role="note">
 				
@@ -325,23 +457,21 @@ Use this to explore the BEM API by uploading it in the <a href="https://editor.s
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://revenyouio.github.io/bots-docs/tags/" title="Tags">
+  
+      <a href="https://revenyouio.github.io/bots-docs/faq/" title="FAQ">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Tags
+              FAQ
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -349,8 +479,11 @@ Use this to explore the BEM API by uploading it in the <a href="https://editor.s
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 
