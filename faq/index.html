@@ -298,7 +298,7 @@
 		<div class="wrapper">
 			<h1>FAQ </h1>
 
-			<h2 id="whats-the-difference-between-base--and-quote-asset">What&rsquo;s the difference between Base- and Quote asset?</h2>
+			<h2 id="what-is-the-difference-between-base--and-quote-asset">What is the difference between Base- and Quote asset?</h2>
 <p>The <strong>baseAsset</strong> of an order or signal is the asset that will be bought or sold. The <strong>quoteAsset</strong> is the asset that will be paid (when buying the base asset) or received (when selling the base asset). So, the below order body describes an order to buy BTC with a limit price of 47000 USDT. Selling BTC for USDT only requires the side of the order to be changed; no switching of base- and quoteAsset is required.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">{</span>
 <span style="color:#e6db74">&#34;signalProvider&#34;</span>: <span style="color:#e6db74">&#34;MyBot&#34;</span>, 
@@ -315,7 +315,10 @@
 <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;limit&#34;</span>, 
 <span style="color:#e6db74">&#34;responseType&#34;</span>: <span style="color:#e6db74">&#34;ACK&#34;</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><h2 id="why-do-i-get-a-forbidden-response">Why do I get a &lsquo;Forbidden&rsquo; response?</h2>
+</code></pre></div><h2 id="what-is-the-role-of-extid">What is the role of extId?</h2>
+<p>The <strong>extId</strong> is a unique id that the bot provides with every order and signal. It allows the bot (creator) to uniquely identify/track/monitor orders and signals, even if the BEM generated id is not available.<br>
+It is important to note that every order or signal needs a <strong>unique</strong> id. For example, if an asset position has been created with a buy order with extId &ldquo;MyExtId1&rdquo; and the bot wants to sell this positon, the sell order should have it&rsquo;s own unique extId; it can not be &ldquo;MyExtId1&rdquo;. There is no relation between the two orders. If an order is added with an extId that has already been used, the order will not be accepted by BEM.</p>
+<h2 id="why-do-i-get-a-forbidden-response">Why do I get a &lsquo;Forbidden&rsquo; response?</h2>
 <p>In general, a &lsquo;forbidden&rsquo; response results from making a call with an unknown <strong>signalProvider</strong> and/or <strong>signalProviderKey</strong>. Bot names and keys are case sensitive, so check it carefully.<br>
 Also make sure you&rsquo;re using the right url:<br>
 When developing/testing your bots, you should use: <a href="https://signal.revenyou.io/paper/api/signal/v2">https://signal.revenyou.io/paper/api/signal/v2</a><br>
