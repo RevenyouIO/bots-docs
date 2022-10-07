@@ -327,25 +327,7 @@ Symbol in the order request is the code of the market of the underlying exchange
 </tr>
 </tbody>
 </table>
-<h3 id="example">Example</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X POST <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/placeOrder&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span> -H  <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#34;{  \&#34;signalProvider\&#34;: \&#34;MyBot\&#34;,  \&#34;signalProviderKey\&#34;: \&#34;MyKey\&#34;,  \&#34;extId\&#34;: \&#34;00001\&#34;,  \&#34;exchange\&#34;: \&#34;binance\&#34;,  \&#34;baseAsset\&#34;: \&#34;BTC\&#34;,  \&#34;quoteAsset\&#34;: \&#34;USDT\&#34;,  \&#34;type\&#34;: \&#34;limit\&#34;,  \&#34;side\&#34;: \&#34;buy\&#34;,  \&#34;limitPrice\&#34;: \&#34;45000\&#34;,  \&#34;qtyPct\&#34;: \&#34;60\&#34;,  \&#34;ttlType\&#34;: \&#34;gtc\&#34;,  \&#34;responseType\&#34;: \&#34;FULL\&#34;}&#34;</span>
-</code></pre></div><p>Please note the meaning of <strong>baseAsset</strong> and <strong>quoteAsset</strong>. The baseAsset is the product that is bought or sold (depending on the <strong>side</strong> of the order), the quoteAsset is the unit of the price. So, the below order body describes an order to buy BTC with a limit price of 47000 USDT. 40% of available USDT will be used to buy BTC. The limit order will be active for 30 seconds. If not filled in this time, it will be cancelled. Selling BTC for USDT only requires the side of the order to be changed; no switching of base- and quoteAsset is required.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">{</span>
-<span style="color:#e6db74">&#34;signalProvider&#34;</span>: <span style="color:#e6db74">&#34;MyBot&#34;</span>, 
-<span style="color:#e6db74">&#34;signalProviderKey&#34;</span>: <span style="color:#e6db74">&#34;MyKey&#34;</span>, 
-<span style="color:#e6db74">&#34;extId&#34;</span>: <span style="color:#e6db74">&#34;MyExtId&#34;</span>, 
-<span style="color:#e6db74">&#34;exchange&#34;</span>: <span style="color:#e6db74">&#34;binance&#34;</span>, 
-<span style="color:#e6db74">&#34;baseAsset&#34;</span>: <span style="color:#e6db74">&#34;BTC&#34;</span>, 
-<span style="color:#e6db74">&#34;quoteAsset&#34;</span>: <span style="color:#e6db74">&#34;USDT&#34;</span>, 
-<span style="color:#e6db74">&#34;limitPrice&#34;</span>: <span style="color:#e6db74">&#34;47000&#34;</span>, 
-<span style="color:#e6db74">&#34;qtyPct&#34;</span>: <span style="color:#e6db74">&#34;40&#34;</span>, 
-<span style="color:#e6db74">&#34;side&#34;</span>: <span style="color:#e6db74">&#34;buy&#34;</span>, 
-<span style="color:#e6db74">&#34;ttlType&#34;</span>: <span style="color:#e6db74">&#34;secs&#34;</span>, 
-<span style="color:#e6db74">&#34;ttlSecs&#34;</span>: <span style="color:#e6db74">&#34;30&#34;</span>, 
-<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;limit&#34;</span>, 
-<span style="color:#e6db74">&#34;responseType&#34;</span>: <span style="color:#e6db74">&#34;ACK&#34;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h3 id="response">Response</h3>
+<h3 id="response">Response</h3>
 <table>
 <thead>
 <tr>
@@ -419,9 +401,7 @@ Symbol in the order request is the code of the market of the underlying exchange
 </tr>
 </tbody>
 </table>
-<h3 id="example-1">Example</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X POST <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/cancelOrder&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span> -H  <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#34;{  \&#34;signalProvider\&#34;: \&#34;MyBot\&#34;,  \&#34;signalProviderKey\&#34;: \&#34;MyKey\&#34;,  \&#34;orderID\&#34;: \&#34;Bem_Generated-ID\&#34;}&#34;</span>
-</code></pre></div><h3 id="response-1">Response</h3>
+<h3 id="response-1">Response</h3>
 <table>
 <thead>
 <tr>
@@ -483,9 +463,7 @@ Symbol in the order request is the code of the market of the underlying exchange
     </tr>
 </tbody>
 </table>
-<h3 id="example-2">Example</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X GET <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/getOrderState?signalProvider=MyBot&amp;signalProviderKey=MyKey&amp;extId=0001&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span>
-</code></pre></div><h3 id="response-2">Response</h3>
+<h3 id="response-2">Response</h3>
 <table>
 <thead>
 <tr>
@@ -587,9 +565,7 @@ Symbol in the order request is the code of the market of the underlying exchange
     </tr>
 </tbody>
 </table>
-<h3 id="example-3">Example</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X GET <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/getOrderInfo?signalProvider=MyBot&amp;signalProviderKey=MyKey&amp;orderId=BEM-generated-OrdeId&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span>
-</code></pre></div><h3 id="response-3">Response</h3>
+<h3 id="response-3">Response</h3>
 Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each entry in the array is the same as the response of the orders/status endpoint.
 <h3 id="trade-object">Trade Object</h3>
 <table>
@@ -603,28 +579,34 @@ Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">id</td>
+<td style="text-align:left">dateTime</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">Trade ID</td>
-<td style="text-align:center">Yes</td>
-</tr>
-<tr>
-<td style="text-align:left">creationTs</td>
-<td style="text-align:center">string</td>
-<td style="text-align:left">Trade creation time</td>
+<td style="text-align:left">Moment in time when the trade happened.</td>
 <td style="text-align:center">Yes</td>
 </tr>
 <tr>
 <td style="text-align:left">price</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">Trade price</td>
+<td style="text-align:left">Order limit price</td>
 <td style="text-align:center">Yes</td>
 </tr>
+<tr>
+  <td style="text-align:left">quantity</td>
+  <td style="text-align:center">string</td>
+  <td style="text-align:left">Starting quantity of the order</td>
+  <td style="text-align:center">Yes</td>
+</tr>
+<tr>
+  <td style="text-align:left">totalCost</td>
+  <td style="text-align:center">string</td>
+  <td style="text-align:left">Total cost of the trade.</td>
+  <td style="text-align:center">Yes</td>
+  </tr>
 </tbody>
 </table>
-<h2 id="get-getorders">[GET] getOrders</h2>
+<h2 id="get-getorders">[GET] balances</h2>
 <h3 id="description-4">Description</h3>
-<p>Request complete list of orders from a bot</p>
+<p>Get detailed information about funds - available for trading, locked, borrowed, etc.</p>
 <h3 id="parameters-4">Parameters</h3>
 <p>(Query)</p>
 <table>
@@ -637,23 +619,15 @@ Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">signalProvider</td>
-<td style="text-align:center">string</td>
-<td style="text-align:left">Name of the Bot</td>
-<td style="text-align:center">Yes</td>
-</tr>
-<tr>
-<td style="text-align:left">signalProviderKey</td>
-<td style="text-align:center">string</td>
-<td style="text-align:left">Secret key</td>
-<td style="text-align:center">Yes</td>
-</tr>
+  <tr>
+    <td style="text-align:left">timestamp</td>
+    <td style="text-align:center">string</td>
+    <td style="text-align:left">The timestamp when request was prepared and sent. The timestamp is specified in ISO format and UTC timezone. Server rejects a request if the value is more than 5 seconds old.</td>
+    <td style="text-align:center">Yes</td>
+    </tr>
 </tbody>
 </table>
-<h3 id="example-4">Example</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -X GET <span style="color:#e6db74">&#34;https://signal.revenyou.io/paper/api/signal/v2/getOrders?signalProvider=MyBot&amp;signalProviderKey=MyKey&#34;</span> -H  <span style="color:#e6db74">&#34;accept: application/xml&#34;</span>
-</code></pre></div><h3 id="response-4">Response</h3>
+<h3 id="response-4">Response</h3>
 <table>
 <thead>
 <tr>
@@ -665,16 +639,53 @@ Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">success</td>
+<td style="text-align:left">assets</td>
+<td style="text-align:center">array</td>
+<td style="text-align:left">An array of asset balance objects.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="asset-object">Asset Balance Object</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">asset</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">&lsquo;true&rsquo; or &lsquo;false&rsquo;</td>
+<td style="text-align:left">The exchange code of the asset, for example: &lsquo;USDT&rsquo;.</td>
 <td style="text-align:center">Yes</td>
 </tr>
 <tr>
-<td style="text-align:left">orders</td>
-<td style="text-align:center">[Order Info objects]</td>
-<td style="text-align:left">See getOrderInfo response</td>
+<td style="text-align:left">free</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The amount of the asset that is free for trading.</td>
 <td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">locked</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The amount of the asset that is locked for trading.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+  <td style="text-align:left">borrowed</td>
+  <td style="text-align:center">string</td>
+  <td style="text-align:left">The amount of the asset that has been borrowed (for shorting or leveraging purposes).</td>
+  <td style="text-align:center">Yes</td>
+</tr>
+<tr>
+  <td style="text-align:left">netAsset</td>
+  <td style="text-align:center">string</td>
+  <td style="text-align:left">netAsset = free + locked - borrowed - interest</td>
+  <td style="text-align:center">Yes</td>
 </tr>
 </tbody>
 </table>
@@ -694,24 +705,7 @@ Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each
 				
 
 <nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  
-      <a href="https://revenyouio.github.io/bots-docs/signals/" title="Signals">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Signals
-            </div>
-          </div>
-        </div>
-      </a>
-  
+
   </div>
 
   <div class="next">
