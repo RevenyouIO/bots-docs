@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>BNF API Reference</title>
+    <title>Authentication - Bots By RevenYOU</title>
     <meta name="generator" content="Hugo 0.76.5" />
 
     
-    <meta name="description" content="BNF api v2 Documentation">
+    <meta name="description" content="BEM api v2 Documentation">
     
-    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/">
+    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/faq/">
     
     <meta name="author" content="Bots by RevenYOU">
     
 
-    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/">
+    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/faq/">
     <meta property="og:title" content="Bots By RevenYOU">
     <meta property="og:image" content="https://revenyouio.github.io/bots-docs/images/Bots_icon.png">
     <meta name="apple-mobile-web-app-title" content="Bots By RevenYOU">
@@ -69,9 +69,6 @@
     <script src="https://revenyouio.github.io/bots-docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://revenyouio.github.io/bots-docs/index.xml" rel="alternate" type="application/rss+xml" title="Bots By RevenYOU" />
-    <link href="https://revenyouio.github.io/bots-docs/index.xml" rel="feed" type="application/rss+xml" title="Bots By RevenYOU" />
-    
 
   </head>
   <body class="palette-primary-light-blue palette-accent-teal">
@@ -100,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        BNF API Reference
+        Authentication
       </div>
     </div>
 
@@ -141,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Bots By RevenYOU <span class="version">3.0.0</span></strong>
+        <strong>Bots By RevenYOU <span class="version">2.0.0</span></strong>
         
           <br>
           RevenyouIO/Bots-Lab
@@ -192,7 +189,6 @@
 
   
 </li>
-
 <li>
   
     
@@ -208,6 +204,7 @@
   
     
   </li>
+
 
 <li>
   
@@ -234,11 +231,14 @@
 
 
 
-<a  title="FAQ" href="https://revenyouio.github.io/bots-docs/faq/">
+<a class="current" title="FAQ" href="https://revenyouio.github.io/bots-docs/faq/">
 	
 	FAQ
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -275,25 +275,15 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>BNF API Reference </h1>
+			<h1>FAQ </h1>
 
-				<h2 id="introduction">Introduction</h2>
-<p>Welcome to the BNF Bot Creators API documentation page. Here you can find all information needed to access the API and start building bots for the BOTS platform!</p>
-<p>In order to gain access to the API, you need to create a bot name and obtain a key for it. Both can be done in the BOTS app, in the 'Factory' tab. Please see the bot creator documentation how to achieve this. You can find it <a href="https://drive.google.com/drive/folders/1faI5HGDQoSd6uhmkHmLVRovAHF1V-POV?usp=sharing">here</a>.</p>
-<p>The BNF API is a REST API that gives your bots access to the trading features of the BOTS platform. It enables you to create trading Orders, and provides you with information about them.</p>
-<h2 id="url">URL</h2>
-<p>When developing and testing your bots, you should use: <a href="https://signal.revenyou.io/paper/api/bnf">https://signal.revenyou.io/paper/api/bnf</a><br>
-Once your bot comes out of quarantine, and enters production, use:         <a href="https://signal.revenyou.io/production/api/bnf">https://signal.revenyou.io/production/api/bnf</a></p>
-<h2 id="openapi-description">OpenAPI description</h2>
-<p>The OpenAPI file can be downloaded here: <a href="https://drive.google.com/drive/folders/1KO1uBte5b_2aKuWfF0bzgPiCc1jGQoIo">BNF.yaml</a>.<br>
-You can use this OpenAPI specification to explore the BNF API by uploading it in the <a href="https://editor.swagger.io/" target="_blank">Swagger editor</a>.</p>
-
-			
+<h2 id="what-is-the-role-of-extid">What is the role of clientOrderId?</h2>
+<p>The <strong>clientOrderId</strong> is a unique ID that the bot provides with every order and signal. It allows the bot creator to uniquely identify/track/monitor orders and signals, even if the BNF generated ID is not available.<br>
+It is important to note that every order needs a <strong>unique</strong> ID. If an order is added with a clientOrderId that has already been used, the order will not be accepted by BNF.</p>
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2022 RevenYOU &ndash;
+				&copy; 2021 RevenYOU &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
@@ -303,6 +293,51 @@ You can use this OpenAPI specification to explore the BNF API by uploading it in
 
 			<footer class="footer">
 				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://revenyouio.github.io/bots-docs/positions/" title="Positions">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Positions
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://revenyouio.github.io/bots-docs/signals/" title="Signals">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Signals
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
 
 
 			</footer>
