@@ -15,12 +15,12 @@
     
     <meta name="description" content="BEM api v2 Documentation">
     
-    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/faq/">
+    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/authentication/">
     
     <meta name="author" content="Bots by RevenYOU">
     
 
-    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/faq/">
+    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/authentication/">
     <meta property="og:title" content="Bots By RevenYOU">
     <meta property="og:image" content="https://revenyouio.github.io/bots-docs/images/Bots_icon.png">
     <meta name="apple-mobile-web-app-title" content="Bots By RevenYOU">
@@ -275,9 +275,9 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>FAQ </h1>
+			<h1>Authentication </h1>
 
-<h2 id="what-is-the-role-of-extid">How does authentication work with the BNF API?</h2>
+<h2 id="how-does-auth-work">How does authentication work with the BNF API?</h2>
 <p>BNF authentication is done through a HMAC signature which every request to BNF API needs to provide. Signing is done with a secret key that is obtained after creating a signalProvider in our system. There are two ways you are able to provide the signature, and it depends on the HTTP method used. For GET methods, signature is provided in the query string, as follows: </p>
  <code>
   GET /balance?signature=SIGNATURE_HASH_HERE&timestamp=TIMESTAMP_HERE&signalProvider=SIGNAL_PROVIDER_NAME_HERE
