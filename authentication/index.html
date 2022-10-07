@@ -279,7 +279,7 @@
 
 <h2 id="how-does-auth-work">How does authentication work with the BNF API?</h2>
 <p>BNF authentication is done through a HMAC signature which every request to BNF API needs to provide. Signing is done with a secret key that is obtained after creating a signalProvider in our system. There are two ways you are able to provide the signature, and it depends on the HTTP method used. For GET methods, signature is provided in the query string, as follows: </p>
- <code>
+ <pre><code>
   GET /balance?signature=SIGNATURE_HASH_HERE&timestamp=TIMESTAMP_HERE&signalProvider=SIGNAL_PROVIDER_NAME_HERE
   for POST methods, the signature ends up in the payload of the request, as follows:
   POST /orders/create
@@ -289,7 +289,7 @@
   timestamp: TIMESTAMP_HERE,
   signalProvider: SIGNAL_PROVIDER_NAME_HERE
   }
-</code>
+</code></pre>
 <p>  Signature includes the entire payload (excluding itself), and is valid for 5 minutes. A detailed example on the workings of the authentication mechanism can be found in the BNF example implementation: <a href="https://drive.google.com/drive/folders/1FWe5rHhRQoKc9BKqBnT8GpeSAtV9pH-j?usp=sharing">Example implementation</a>.</p>
 
 			<aside class="copyright" role="note">
@@ -306,45 +306,7 @@
 				
 
 <nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  
-      <a href="https://revenyouio.github.io/bots-docs/positions/" title="Positions">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Positions
-            </div>
-          </div>
-        </div>
-      </a>
-  
-  </div>
 
-  <div class="next">
-  
-      <a href="https://revenyouio.github.io/bots-docs/signals/" title="Signals">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Signals
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  
-  </div>
 </nav>
 
 
