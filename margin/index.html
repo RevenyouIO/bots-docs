@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Authentication - Bots By RevenYOU</title>
+    <title>Positions - Bots By RevenYOU</title>
     <meta name="generator" content="Hugo 0.76.5" />
 
     
     <meta name="description" content="BEM api v2 Documentation">
     
-    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/authentication/">
+    <link rel="canonical" href="https://revenyouio.github.io/bots-docs/positions/">
     
     <meta name="author" content="Bots by RevenYOU">
     
 
-    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/authentication/">
+    <meta property="og:url" content="https://revenyouio.github.io/bots-docs/positions/">
     <meta property="og:title" content="Bots By RevenYOU">
     <meta property="og:image" content="https://revenyouio.github.io/bots-docs/images/Bots_icon.png">
     <meta name="apple-mobile-web-app-title" content="Bots By RevenYOU">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Authentication
+        Margin
       </div>
     </div>
 
@@ -189,13 +189,14 @@
 
   
 </li>
+
 <li>
   
     
 
 
 
-  <a class="current" title="Authentication" href="https://revenyouio.github.io/bots-docs/authentication/">
+  <a  title="Authentication" href="https://revenyouio.github.io/bots-docs/authentication/">
     
     Authentication
   </a>
@@ -204,7 +205,6 @@
   
     
   </li>
-
 
 <li>
   
@@ -233,6 +233,10 @@
     Margin
   </a>
   
+  
+  <ul id="scrollspy">
+  </ul>
+    
   </li>
 
 
@@ -242,18 +246,16 @@
 
 
 
-<a title="FAQ" href="https://revenyouio.github.io/bots-docs/faq/">
+<a  title="FAQ" href="https://revenyouio.github.io/bots-docs/faq/">
 	
 	FAQ
 </a>
 
 
-<ul id="scrollspy">
-</ul>
-
 
   
 </li>
+
 
 
         </ul>
@@ -286,48 +288,9 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Authentication </h1>
+			<h1>Positions </h1>
 
-<h2 id="how-does-auth-work">How does authentication work with the BNF API?</h2>
-<p>BNF authentication is done through a HMAC signature which every request to BNF API needs to provide. Signing is done with a secret key that is obtained after creating a signalProvider in our system. The authentication requires a timestamp of the request, and a signature that is provided in the headers. The location of the timestamp depends on the HTTP method used. For GET methods, the timestamp of the request should be provided in the query string, whereas for POST methods, the timestamp should be provided in the request body. </p>
- <pre><code>
-  def sign_payload(self, payload: str):
-  return hmac.new(self.key.encode("utf-8"), payload.encode("utf-8"), hashlib.sha256).hexdigest()
 
-def sign_get(self, query_params: dict):
-  ordered_params = [item for item in query_params.items()]
-  ordered_params.sort(key=lambda tup: tup[0])
-  to_sign = ""
-  for k, v in ordered_params:
-      to_sign += k + "=" + str(v) + "&"
-  return self.sign_payload(to_sign[:-1])
-
-def do_get(self, method: str, query_params: dict) -> requests.Response:
-  """Makes GET request the way it is expected from the BNF API."""
-  query_params["timestamp"] = self._current_ts()
-  return requests.get(
-      self.url + "/api/bnf/" + method, 
-      params=query_params,
-      headers={
-          "X-BOT": self.bot,
-          "Sign": self.sign_get(query_params)
-      },
-  )
-
-def do_post(self, method: str, request_body: dict) -> requests.Response:
-  """Makes POST request the way it is expected from the BNF API."""
-  request_body["timestamp"] = self._current_ts()
-  data = json.dumps(request_body)
-  return requests.post(
-      self.url + "/api/bnf/" + method, 
-      data=data,
-      headers={
-          "X-BOT": self.bot,
-          "Sign": self.sign_payload(data)
-      },
-  )
-</code></pre>
-<p>  Signature includes the entire payload (excluding itself), and is valid for 5 minutes. A detailed example on the workings of the authentication mechanism can be found in the BNF example implementation: <a href="https://drive.google.com/drive/folders/1FWe5rHhRQoKc9BKqBnT8GpeSAtV9pH-j?usp=sharing">Example implementation</a>.</p>
 
 			<aside class="copyright" role="note">
 				
@@ -343,7 +306,29 @@ def do_post(self, method: str, request_body: dict) -> requests.Response:
 				
 
 <nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+  </div>
 
+  <div class="next">
+  
+      <a href="https://revenyouio.github.io/bots-docs/faq/" title="FAQ">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              FAQ
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
 </nav>
 
 
