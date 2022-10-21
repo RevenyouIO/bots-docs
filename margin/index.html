@@ -289,8 +289,155 @@
 	<article class="article">
 		<div class="wrapper">
 			<h1>Margin </h1>
+<p>
+      The margin endpoints can be used to open or close a short position in a certain asset. Short positions at BOTS are bound by certain business rules, to reduce risk for the platform, which are outlined below.
+      <li>Short positions can only be taken in the assets Bitcoin (BTC) and Ethereum (ETH). We will increase the list of available assets in the future.</li>
+      <li>After taking a loan in BTC or ETH to facilitate a short position, the loaned amounts can only be sold in the market of the asset against BUSD. (BTCBUSD and ETHBUSD)</li>
+      <li>Each bot has a maximum loan percentage, indicating the amount of margin the bot can take. This percentage in combination with the balances of the bot define how much funds can be loaned.</li><br>
+      Notice that the restrictions on tradable assets are not applied in the paper trading environment. This means that you can use the paper trading environment to test all the strategies that you can think of! If a certain strategy performs well, but goes outside the bounds of the rules above, you can always reach out to the Bot Creators team at BOTS to discuss the opportunity.
+    </p>
+<h2 id="post-placeorder">[POST] loans/take</h2>
+<h3 id="description">Description</h3>
+<p>Take a loan in a certain asset, to facilitate a short position.</p>
+<h3 id="parameters">Parameters</h3>
+<p>(Body)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">asset</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The asset in which the loan will be taken.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">amount</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The amount of the asset that should be loaned.</td>
+<td style="text-align:center">Yes* (if takeMaxLoan is not provided or false)</td>
+</tr>
+<tr>
+<td style="text-align:left">timestamp</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">Timestamp of the request.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+  <td style="text-align:left">takeMaxLoan</td>
+  <td style="text-align:center">boolean</td>
+  <td style="text-align:left">When true, the API gives the maximum possible amount of loan, and the amount parameter is ignored. This is a convenience flag.</td>
+  <td style="text-align:center">No</td>
+  </tr>
+</tbody>
+</table>
 
-      This page is currently work in progress, stay tuned!
+
+<h2 id="post-placeorder">[POST] loans/repay</h2>
+<h3 id="description">Description</h3>
+<p>Repay a loan in a certain asset, to facilitate the closing of a short position.</p>
+<h3 id="parameters">Parameters</h3>
+<p>(Body)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">asset</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The asset in which the loan will be taken.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">amount</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The amount of the asset that should be loaned.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">timestamp</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">Timestamp of the request.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="post-placeorder">[GET] loans/limits</h2>
+<h3 id="description">Description</h3>
+<p>Returns estimation of the current total loan and maximum total loan over all balances of the bot, converted to a certain asset.</p>
+<h3 id="parameters">Parameters</h3>
+<p>(Body)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">asset</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The asset in which the loan will be taken.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">timestamp</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">Timestamp of the request.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="parameters">Response</h3>
+<p>(Body)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">asset</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The asset in which the loan limits are displayed.</td>
+</tr>
+<tr>
+<td style="text-align:left">maxLoanPercentage</td>
+<td style="text-align:center">string</td>
+<td style="text-align:left">The percentage of total assets of the bot that can be loaned by this bot.</td>
+</tr>
+<tr>
+  <td style="text-align:left">currentTotalLoanSize</td>
+  <td style="text-align:center">string</td>
+  <td style="text-align:left">The size of the current total loan, converted to the requested asset.</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">maxTotalLoanSize</td>
+    <td style="text-align:center">string</td>
+    <td style="text-align:left">The maximum loan that this bot can currently take, converted to the requested asset.</td>
+    </tr>
+</tbody>
+</table>
 
 			<aside class="copyright" role="note">
 				
