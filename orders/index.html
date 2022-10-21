@@ -631,6 +631,34 @@ Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each
   </tr>
 </tbody>
 </table>
+
+<h2 id="get-getorderinfo">[GET] symbols</h2>
+<h3 id="description-3">Description</h3>
+<p>Retrieves symbols available for trading.</p>
+<h3 id="parameters-3">Parameters</h3>
+<p>(Query)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Mandatory</th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+    <td style="text-align:left">timestamp</td>
+    <td style="text-align:center">string</td>
+    <td style="text-align:left">The timestamp when request was prepared and sent. The timestamp is specified in ISO format and UTC timezone. Server rejects a request if the value is more than 5 seconds old.</td>
+    <td style="text-align:center">Yes</td>
+    </tr>
+</tbody>
+</table>
+
+<h3 id="parameters-3">Response</h3>
+<p>An array of symbols, for example "BTCUSDT".</p>
+
 <h2 id="get-getorders">[GET] balances</h2>
 <h3 id="description-4">Description</h3>
 <p>Get detailed information about funds - available for trading, locked, borrowed, etc.</p>
