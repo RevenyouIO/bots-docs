@@ -278,17 +278,43 @@
 			<h1>Authentication </h1>
 
 <h2 id="how-does-auth-work">How does authentication work with the BNF API?</h2>
-<p>BNF authentication is done through a HMAC signature which every request to BNF API needs to provide. Signing is done with a secret key that is obtained after creating a signalProvider in our system. There are two ways you are able to provide the signature, and it depends on the HTTP method used. For GET methods, signature is provided in the query string, as follows: </p>
+<p>BNF authentication is done through a HMAC signature which every request to BNF API needs to provide. Signing is done with a secret key that is obtained after creating a signalProvider in our system. The authentication requires a timestamp of the request, and a signature that is provided in the headers. The location of the timestamp depends on the HTTP method used. For GET methods, the timestamp of the request should be provided in the query string, whereas for POST methods, the timestamp should be provided in the request body. </p>
  <pre><code>
-  GET /balance?signature=SIGNATURE_HASH_HERE&timestamp=TIMESTAMP_HERE&signalProvider=SIGNAL_PROVIDER_NAME_HERE
-  for POST methods, the signature ends up in the payload of the request, as follows:
-  POST /orders/create
-  {
-  ...
-  signature: SIGNATURE_HASH_HERE,
-  timestamp: TIMESTAMP_HERE,
-  signalProvider: SIGNAL_PROVIDER_NAME_HERE
-  }
+  def sign_payload(self, payload: str):
+  return hmac.new(self.key.encode("utf-8"), payload.encode("utf-8"), hashlib.sha256).hexdigest()
+
+def sign_get(self, query_params: dict):
+  ordered_params = [item for item in query_params.items()]
+  ordered_params.sort(key=lambda tup: tup[0])
+  to_sign = ""
+  for k, v in ordered_params:
+      to_sign += k + "=" + str(v) + "&"
+  return self.sign_payload(to_sign[:-1])
+
+def do_get(self, method: str, query_params: dict) -> requests.Response:
+  """Makes GET request the way it is expected from the BNF API."""
+  query_params["timestamp"] = self._current_ts()
+  return requests.get(
+      self.url + "/api/bnf/" + method, 
+      params=query_params,
+      headers={
+          "X-BOT": self.bot,
+          "Sign": self.sign_get(query_params)
+      },
+  )
+
+def do_post(self, method: str, request_body: dict) -> requests.Response:
+  """Makes POST request the way it is expected from the BNF API."""
+  request_body["timestamp"] = self._current_ts()
+  data = json.dumps(request_body)
+  return requests.post(
+      self.url + "/api/bnf/" + method, 
+      data=data,
+      headers={
+          "X-BOT": self.bot,
+          "Sign": self.sign_payload(data)
+      },
+  )
 </code></pre>
 <p>  Signature includes the entire payload (excluding itself), and is valid for 5 minutes. A detailed example on the workings of the authentication mechanism can be found in the BNF example implementation: <a href="https://drive.google.com/drive/folders/1FWe5rHhRQoKc9BKqBnT8GpeSAtV9pH-j?usp=sharing">Example implementation</a>.</p>
 
