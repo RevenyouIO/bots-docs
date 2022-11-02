@@ -138,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Bots By RevenYOU <span class="version">2.0.0</span></strong>
+        <strong>Bots By RevenYOU <span class="version">3.0.0</span></strong>
         
           <br>
           RevenyouIO/Bots-Lab
@@ -745,6 +745,144 @@ Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each
 </tbody>
 </table>
 
+<h2>API errors</h2> 
+​
+​
+<h3>API error json</h3>
+<pre><code>
+  json
+  {
+    "errorMessage": "error description",
+    "errorCode": 42,
+    "paramName": "invalid parameter name (optional)",
+    "paramValue": "invalid parameter value (optional)"
+  }
+</code></pre>
+
+<h3>HTTP response codes</h3>
+
+<ul>
+  <li>200 - Ok.</li>
+  <li>403 - Authentication error. Common reason: Request signature is not correct or request timestamp is too old.</li>
+  <li>4xx - Client side error. Common reason: Parameter validation errors. (See "paramName" and "paramValue" for parameter name/value).</li>
+  <li>5xx - Server side error.</li>
+</ul>
+
+<h3>API error codes</h3>
+<table>
+  <thead>
+  <tr>
+  <th style="text-align:left">Error code</th>
+  <th style="text-align:left">Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">42 - OTHER_ERROR</td>
+      <td style="text-align:left">General error. (See "errorMessage" to find out a specific reason.)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">101 - NOT_ENOUGH_BALANCE</td>
+      <td style="text-align:left">Balance is not enough to place an order.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">102 - MARKET_IS_INACTIVE</td>
+      <td style="text-align:left">Market is currently inactive.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">103 - ORDER_CAN_NO_LONGER_BE_CANCELLED</td>
+      <td style="text-align:left">Order is not open anymore so it can't be canceled.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">104 - ORDER_ALREADY_CANCELLED</td>
+      <td style="text-align:left">Rarely seen error when order becomes canceled right before we cancel the order.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">105 - ORDER_ALREADY_REJECTED</td>
+      <td style="text-align:left">Rarely seen error when order becomes rejected right before we cancel the order.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">106 - ORDER_ALREADY_FULFILLED</td>
+      <td style="text-align:left">Rarely seen error when order becomes fulfilled right before we cancel the order.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">107 - PLACE_ORDER_IS_DISABLED</td>
+      <td style="text-align:left">Maintenance: Market doesn't accept orders at the moment.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">108 - CANCEL_ORDER_IS_DISABLED</td>
+      <td style="text-align:left">Maintenance: Market doesn't allow order to be canceled at the moment.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">201 - USER_NOT_FOUND</td>
+      <td style="text-align:left">Unknown user.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">202 - ASSET_NOT_FOUND</td>
+      <td style="text-align:left">Unknown asset.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">203 - EXCHANGE_SYMBOL_NOT_FOUND</td>
+      <td style="text-align:left">Symbol is not available on the exchange.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">204 - TICKER_NOT_FOUND</td>
+      <td style="text-align:left">Ticker is not available.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">205 - ORDER_NOT_FOUND</td>
+      <td style="text-align:left">Order referred to in the request is not found.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">206 - INVALID_VALUE</td>
+      <td style="text-align:left">General validation error. (See "errorMessage" to find out a specific reason.)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">207 - VALUE_TOO_LOW</td>
+      <td style="text-align:left">Parameter value is below certain threshold.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">208 - VALUE_TOO_HIGH</td>
+      <td style="text-align:left">Parameter value is above certain threshold.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">209 - CANNOT_EXTRACT_PARAM</td>
+      <td style="text-align:left">Mandatory parameter is missing. Parameter format is not correct.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">210 - ORDER_DOES_NOT_BELONG_TO_USER</td>
+      <td style="text-align:left">Order was placed on behalf of a different user.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">214 - CLIENT_ORDER_ID_IN_USE</td>
+      <td style="text-align:left">Client order ID is not unique.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">215 - ORDER_VALUE_TOO_SMALL</td>
+      <td style="text-align:left">Order notional value is less than 0.1 Euro.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">216 - EXCHANGE_NOT_FOUND</td>
+      <td style="text-align:left">Unknown exchange.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">222 - SIGNAL_PROVIDER_NOT_FOUND</td>
+      <td style="text-align:left">Unknown bot.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">225 - EXCHANGE_ASSET_NOT_FOUND</td>
+      <td style="text-align:left">Asset is not available on the exchange.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">232 - DECIMAL_PRECISION_TOO_HIGH</td>
+      <td style="text-align:left">Decimal parameter precision is too high.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">301 - FORBIDDEN</td>
+      <td style="text-align:left">Insufficient permissions.</td>
+    </tr>
+  </tbody>
+  </table>
 
 			<aside class="copyright" role="note">
 				
