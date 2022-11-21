@@ -411,7 +411,7 @@
 <tr>
 <td style="text-align:left">clientOrderId</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">Secret key</td>
+<td style="text-align:left">Client order ID specified by the bot creator for this order.</td>
 <td style="text-align:center">Yes* (or orderId)</td>
 </tr>
 <tr>
@@ -440,9 +440,9 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">success</td>
+<td style="text-align:left">orderId</td>
 <td style="text-align:center">string</td>
-<td style="text-align:left">&lsquo;true&rsquo; or &lsquo;false&rsquo;</td>
+<td style="text-align:left">Order ID of the canceled order</td>
 <td style="text-align:center">Yes</td>
 </tr>
 </tbody>
@@ -473,7 +473,7 @@
     <tr>
     <td style="text-align:left">clientOrderId</td>
     <td style="text-align:center">string</td>
-    <td style="text-align:left">Secret key</td>
+    <td style="text-align:left">Client order ID specified by the bot creator for this order.</td>
     <td style="text-align:center">Yes* (or orderId)</td>
     </tr>
     <tr>
@@ -734,6 +734,12 @@ Returns an array of orders that have the status &lsquo;OPEN&rsquo;. Data of each
   <td style="text-align:left">borrowed</td>
   <td style="text-align:center">string</td>
   <td style="text-align:left">The amount of the asset that has been borrowed (for shorting or leveraging purposes).</td>
+  <td style="text-align:center">Yes</td>
+</tr>
+<tr>
+  <td style="text-align:left">interest</td>
+  <td style="text-align:center">string</td>
+  <td style="text-align:left">The amount of interest that has accumulated for a borrowed asset.</td>
   <td style="text-align:center">Yes</td>
 </tr>
 <tr>
